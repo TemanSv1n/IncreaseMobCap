@@ -1,4 +1,4 @@
-package ml.adamsogm.increasemobcap;
+package com.syric.increasemobcap;
 
 import com.electronwill.nightconfig.core.file.CommentedFileConfig;
 import com.electronwill.nightconfig.core.io.WritingMode;
@@ -24,11 +24,11 @@ public class Config {
 	static {
 		CONFIG_BUILDER.comment("Mob Caps").push("mobcaps");
 		
-		MONSTER_CAP = CONFIG_BUILDER.comment("Mob cap for monsters").define("monster", MONSTER.getMaxNumberOfCreature());
-		CREATURE_CAP = CONFIG_BUILDER.comment("Mob cap for creatures").define("creature", CREATURE.getMaxNumberOfCreature());
-		AMBIENT_CAP = CONFIG_BUILDER.comment("Mob cap for ambient").define("ambient", AMBIENT.getMaxNumberOfCreature());
-		WATER_CREATURE_CAP = CONFIG_BUILDER.comment("Mob cap for water creatures").define("water_creature", WATER_CREATURE.getMaxNumberOfCreature());
-		WATER_AMBIENT_CAP = CONFIG_BUILDER.comment("Mob cap for ambient water creatures").define("water_ambient", WATER_AMBIENT.getMaxNumberOfCreature());
+		MONSTER_CAP = CONFIG_BUILDER.comment("Mob cap for monsters").define("monster", MONSTER.getMaxInstancesPerChunk());
+		CREATURE_CAP = CONFIG_BUILDER.comment("Mob cap for creatures").define("creature", CREATURE.getMaxInstancesPerChunk());
+		AMBIENT_CAP = CONFIG_BUILDER.comment("Mob cap for ambient").define("ambient", AMBIENT.getMaxInstancesPerChunk());
+		WATER_CREATURE_CAP = CONFIG_BUILDER.comment("Mob cap for water creatures").define("water_creature", WATER_CREATURE.getMaxInstancesPerChunk());
+		WATER_AMBIENT_CAP = CONFIG_BUILDER.comment("Mob cap for ambient water creatures").define("water_ambient", WATER_AMBIENT.getMaxInstancesPerChunk());
 		CONFIG_BUILDER.pop();
 		
 		CONFIG = CONFIG_BUILDER.build();

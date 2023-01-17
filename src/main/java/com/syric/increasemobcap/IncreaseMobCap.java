@@ -1,4 +1,4 @@
-package ml.adamsogm.increasemobcap;
+package com.syric.increasemobcap;
 
 import net.minecraft.entity.EntityClassification;
 import net.minecraftforge.fml.ExtensionPoint;
