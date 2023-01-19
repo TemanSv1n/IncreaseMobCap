@@ -22,13 +22,18 @@ public class Config {
 	public static ForgeConfigSpec.Builder CONFIG_BUILDER = new ForgeConfigSpec.Builder();
 	
 	static {
-		CONFIG_BUILDER.comment("Mob Caps").push("mobcaps");
+		CONFIG_BUILDER.push("Mob Caps");
 		
-		MONSTER_CAP = CONFIG_BUILDER.comment("Mob cap for monsters").define("monster", MONSTER.getMaxInstancesPerChunk());
-		CREATURE_CAP = CONFIG_BUILDER.comment("Mob cap for creatures").define("creature", CREATURE.getMaxInstancesPerChunk());
-		AMBIENT_CAP = CONFIG_BUILDER.comment("Mob cap for ambient").define("ambient", AMBIENT.getMaxInstancesPerChunk());
-		WATER_CREATURE_CAP = CONFIG_BUILDER.comment("Mob cap for water creatures").define("water_creature", WATER_CREATURE.getMaxInstancesPerChunk());
-		WATER_AMBIENT_CAP = CONFIG_BUILDER.comment("Mob cap for ambient water creatures").define("water_ambient", WATER_AMBIENT.getMaxInstancesPerChunk());
+		MONSTER_CAP = CONFIG_BUILDER.comment("Mob cap for monsters." +
+				"Controls the maximum number of zombies, creepers, etc. Default: 70").define("monster", MONSTER.getMaxInstancesPerChunk());
+		CREATURE_CAP = CONFIG_BUILDER.comment("Mob cap for creatures." +
+				"Controls the maximum number of miscellaneous creatures. Default: 10").define("creature", CREATURE.getMaxInstancesPerChunk());
+		AMBIENT_CAP = CONFIG_BUILDER.comment("Mob cap for ambient." +
+				"Controls the maximum number of bats. Default: 15").define("ambient", AMBIENT.getMaxInstancesPerChunk());
+		WATER_CREATURE_CAP = CONFIG_BUILDER.comment("Mob cap for water creatures." +
+				"Controls the maximum number of squid, dolphins, etc. Default: 5").define("water_creature", WATER_CREATURE.getMaxInstancesPerChunk());
+		WATER_AMBIENT_CAP = CONFIG_BUILDER.comment("Mob cap for ambient water creatures." +
+				"Controls the maximum number of fish. Default: 20").define("water_ambient", WATER_AMBIENT.getMaxInstancesPerChunk());
 		CONFIG_BUILDER.pop();
 		
 		CONFIG = CONFIG_BUILDER.build();
