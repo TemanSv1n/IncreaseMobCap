@@ -23,14 +23,11 @@ public class IncreaseMobCap {
 	
 	public IncreaseMobCap() {
 
-
-
 		ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, Config.COMMON_SPEC, "increasemobcap-common.toml");
 		Config.loadConfig(Config.COMMON_SPEC, FMLPaths.CONFIGDIR.get().resolve("increasemobcap-common.toml"));
 
-
-//		ModLoadingContext.get().registerConfig(ModConfig.Type.SERVER, Config.CONFIG);
-//		Config.loadConfig(Config.CONFIG, FMLPaths.CONFIGDIR.get().resolve("increasemobcap.toml"));
+//		ModLoadingContext.get().registerConfig(ModConfig.Type.SERVER, Config.COMMON_SPEC);
+//		Config.loadConfig(Config.COMMON_SPEC, FMLPaths.CONFIGDIR.get().resolve("increasemobcap.toml"));
 		FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setup);
 		
 		//Make sure the mod being absent on the other network side does not cause the client to display the server as incompatible
