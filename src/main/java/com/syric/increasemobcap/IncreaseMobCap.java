@@ -1,6 +1,6 @@
 package com.syric.increasemobcap;
 
-import net.minecraft.entity.EntityClassification;
+import net.minecraft.world.entity.MobCategory;
 import net.minecraftforge.fml.ExtensionPoint;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
@@ -34,26 +34,25 @@ public class IncreaseMobCap {
 		ModLoadingContext.get().registerExtensionPoint(ExtensionPoint.DISPLAYTEST, () -> Pair.of(() -> FMLNetworkConstants.IGNORESERVERONLY, (a, b) -> true));
 	}
 	
-	private void setup(final FMLCommonSetupEvent event)
-	{
+	private void setup(final FMLCommonSetupEvent event) {
 		
 //		for (EntityClassification classification : EntityClassification.values()) {
 //			LOGGER.error(String.format("%s: %d", classification.getName(), classification.getMaxNumberOfCreature()));
 //		}
 		
 		try {
-			Field mobCap = ObfuscationReflectionHelper.findField(EntityClassification.class, "field_75606_e");
+			Field mobCap = ObfuscationReflectionHelper.findField(MobCategory.class, "field_75606_e");
 			mobCap.setAccessible(true);
 			
 			Field modifierField = Field.class.getDeclaredField("modifiers");
 			modifierField.setAccessible(true);
 			modifierField.setInt(mobCap, mobCap.getModifiers() & ~Modifier.FINAL);
 			
-			mobCap.setInt(EntityClassification.MONSTER, Config.MONSTER_CAP.get());
-			mobCap.setInt(EntityClassification.CREATURE, Config.CREATURE_CAP.get());
-			mobCap.setInt(EntityClassification.AMBIENT, Config.AMBIENT_CAP.get());
-			mobCap.setInt(EntityClassification.WATER_CREATURE, Config.WATER_CREATURE_CAP.get());
-			mobCap.setInt(EntityClassification.WATER_AMBIENT, Config.WATER_AMBIENT_CAP.get());
+			mobCap.setInt(MobCategory.MONSTER, Config.MONSTER_CAP.get());
+			mobCap.setInt(MobCategory.CREATURE, Config.CREATURE_CAP.get());
+			mobCap.setInt(MobCategory.AMBIENT, Config.AMBIENT_CAP.get());
+			mobCap.setInt(MobCategory.WATER_CREATURE, Config.WATER_CREATURE_CAP.get());
+			mobCap.setInt(MobCategory.WATER_AMBIENT, Config.WATER_AMBIENT_CAP.get());
 		} catch (NoSuchFieldException | IllegalAccessException e) {
 			e.printStackTrace();
 		}

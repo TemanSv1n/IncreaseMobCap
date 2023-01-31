@@ -7,7 +7,7 @@ import net.minecraftforge.fml.common.Mod;
 
 import java.nio.file.Path;
 
-import static net.minecraft.entity.EntityClassification.*;
+import static net.minecraft.world.entity.MobCategory.*;
 
 @Mod.EventBusSubscriber
 public class Config {
