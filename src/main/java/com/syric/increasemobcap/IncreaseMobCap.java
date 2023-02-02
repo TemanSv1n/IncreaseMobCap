@@ -13,6 +13,7 @@ import net.minecraftforge.network.NetworkConstants;
 import org.apache.commons.lang3.tuple.Pair;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import sun.misc.Unsafe;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
@@ -43,22 +44,30 @@ public class IncreaseMobCap {
 //		}
 		
 		try {
-			Field mobCap = ObfuscationReflectionHelper.findField(MobCategory.class, "");
+			Field mobCap = ObfuscationReflectionHelper.findField(MobCategory.class, "f_21586_");
 			mobCap.setAccessible(true);
 			
-			Field modifierField = Field.class.getDeclaredField("modifiers");
-			modifierField.setAccessible(true);
-			modifierField.setInt(mobCap, mobCap.getModifiers() & ~Modifier.FINAL);
+//			Field modifierField = Field.class.getDeclaredField("modifiers");
+//			modifierField.setAccessible(true);
+//			modifierField.setInt(mobCap, mobCap.getModifiers() & ~Modifier.FINAL);
+
+//			final Field unsafeField = Unsafe.class.getDeclaredField("theUnsafe");
+//			unsafeField.setAccessible(true);
+//			final Unsafe unsafe = (Unsafe) unsafeField.get(null);
+//
+//			final Object staticFieldBase = unsafe.staticFieldBase(mobCap);
+//			final long staticFieldOffset = unsafe.staticFieldOffset(mobCap);
+//			unsafe.putObject(staticFieldBase, staticFieldOffset, "it works");
 			
 			mobCap.setInt(MobCategory.MONSTER, Config.MONSTER_CAP.get());
 			mobCap.setInt(MobCategory.CREATURE, Config.CREATURE_CAP.get());
 			mobCap.setInt(MobCategory.AMBIENT, Config.AMBIENT_CAP.get());
 			mobCap.setInt(MobCategory.WATER_CREATURE, Config.WATER_CREATURE_CAP.get());
 			mobCap.setInt(MobCategory.WATER_AMBIENT, Config.WATER_AMBIENT_CAP.get());
-		} catch (NoSuchFieldException | IllegalAccessException e) {
+		} catch (IllegalAccessException e) {
 			e.printStackTrace();
 		}
-		
+
 //		for (EntityClassification classification : EntityClassification.values()) {
 //			LOGGER.error(String.format("%s: %d", classification.getName(), classification.getMaxNumberOfCreature()));
 //		}
