@@ -1,7 +1,6 @@
 package com.syric.increasemobcap;
 
 import net.minecraft.world.entity.MobCategory;
-import net.minecraftforge.fml.IExtensionPoint;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
@@ -9,14 +8,10 @@ import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.fml.loading.FMLPaths;
 import net.minecraftforge.fml.util.ObfuscationReflectionHelper;
-import net.minecraftforge.network.NetworkConstants;
-import org.apache.commons.lang3.tuple.Pair;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import sun.misc.Unsafe;
 
 import java.lang.reflect.Field;
-import java.lang.reflect.Modifier;
 
 @Mod("increasemobcap")
 public class IncreaseMobCap {
@@ -64,6 +59,8 @@ public class IncreaseMobCap {
 			mobCap.setInt(MobCategory.AMBIENT, Config.AMBIENT_CAP.get());
 			mobCap.setInt(MobCategory.WATER_CREATURE, Config.WATER_CREATURE_CAP.get());
 			mobCap.setInt(MobCategory.WATER_AMBIENT, Config.WATER_AMBIENT_CAP.get());
+			mobCap.setInt(MobCategory.AXOLOTLS, Config.AXOLOTL_CAP.get());
+			mobCap.setInt(MobCategory.UNDERGROUND_WATER_CREATURE, Config.UNDERGROUND_WATER_CAP.get());
 		} catch (IllegalAccessException e) {
 			e.printStackTrace();
 		}
