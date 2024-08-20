@@ -3,6 +3,7 @@ package net.svisvi.increasemobcap;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.MobCategory;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
@@ -11,6 +12,7 @@ import net.minecraftforge.fml.util.ObfuscationReflectionHelper;
 import net.minecraftforge.network.NetworkEvent;
 import net.minecraftforge.network.NetworkRegistry;
 import net.minecraftforge.network.simple.SimpleChannel;
+import net.svisvi.increasemobcap.network.ModEvents;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -31,9 +33,11 @@ public class IncreaseMobCap {
 
 //		ModLoadingContext.get().registerConfig(ModConfig.Type.SERVER, Config.COMMON_SPEC);
 //		Config.loadConfig(Config.COMMON_SPEC, FMLPaths.CONFIGDIR.get().resolve("increasemobcap.toml"));
-		FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setup);
+
 		IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
 		ModItems.REGISTRY.register(bus);
+		MinecraftForge.EVENT_BUS.register(new ModEvents());
+		FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setup);
 		
 		//Make sure the mod being absent on the other network side does not cause the client to display the server as incompatible
 //		ModLoadingContext.get().registerExtensionPoint(IExtensionPoint.DisplayTest.class, () -> Pair.of(() -> NetworkConstants.IGNORESERVERONLY, (a, b) -> true));

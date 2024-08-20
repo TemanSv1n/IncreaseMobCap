@@ -1,9 +1,9 @@
 package net.svisvi.increasemobcap.item;
 
+import net.minecraft.network.chat.Component;
 import net.svisvi.increasemobcap.network.ModVariables;
 import net.minecraft.Util;
 import net.minecraft.network.chat.ChatType;
-import net.minecraft.network.chat.TextComponent;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.MobCategory;
@@ -52,8 +52,9 @@ public class CapUpdaterItem extends Item {
             cstr += "Water Ambient: " + Integer.toString(ModVariables.MapVariables.get(world).Water_ambient_cap) + " ; ";
             cstr += "Underground water creature: " + Integer.toString(ModVariables.MapVariables.get(world).Underground_water_cap) + " ; ";
             cstr += "Axolotl : " + Integer.toString(ModVariables.MapVariables.get(world).Axolotl_cap) + " ; ";
+
             if (!world.isClientSide() && world.getServer() != null)
-                world.getServer().getPlayerList().broadcastMessage(new TextComponent(cstr), ChatType.SYSTEM, Util.NIL_UUID);
+                entity.sendSystemMessage(Component.literal(cstr));
 
         }
 

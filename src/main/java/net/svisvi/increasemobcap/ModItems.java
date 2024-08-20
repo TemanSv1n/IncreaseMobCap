@@ -1,6 +1,5 @@
 package net.svisvi.increasemobcap;
 
-import com.syric.increasemobcap.item.*;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
@@ -22,7 +21,7 @@ public class ModItems {
     public static final RegistryObject<Item> CAP_UPDATER = REGISTRY.register("cap_updater", () -> new CapUpdaterItem());
 
     private static RegistryObject<Item> block(RegistryObject<Block> block, CreativeModeTab tab) {
-        return REGISTRY.register(block.getId().getPath(), () -> new BlockItem(block.get(), new Item.Properties().tab(tab)));
+        return REGISTRY.register(block.getId().getPath(), () -> new BlockItem(block.get(), new Item.Properties()));
     }
 
 }
