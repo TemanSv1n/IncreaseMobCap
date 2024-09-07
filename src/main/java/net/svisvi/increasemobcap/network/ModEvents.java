@@ -24,6 +24,7 @@ public class ModEvents {
                 .then(UndergroundWaterCreatureCapCommand.register())
                 .then(WaterAmbientCapCommand.register())
                 .then(WaterCreatureCapCommand.register())
+                .then(CountChickensCommand.register())
 
         );
     }
